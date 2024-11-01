@@ -43,7 +43,7 @@ public class SiFrame {
 	
 	// frame
 	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-	frame.setSize(400,700);
+	frame.setSize(400,770);
 	frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 	frame.setLocationRelativeTo(null);
 	
@@ -161,3 +161,4 @@ public class SiFrame {
 		new SiFrame();
 	}
 }
+

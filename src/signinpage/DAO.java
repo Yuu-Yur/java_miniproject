@@ -26,7 +26,7 @@ public class DAO {
 			con = Connect.getConnection();
 			sql = "INSERT INTO reviewMember(idNo,id,password,name,email) VALUES (reviewMember_seq.NEXTVAL,?,?,?,?)";
 			sql2 = "SELECT * from reviewMember WHERE email = ?";
-			sql3 = "SECELT * from reviewMember Where id = ?";
+			sql3 = "SELECT * from reviewMember WHERE id = ?";
 			pstmt = con.prepareStatement(sql);
 			pstmt.setString(1, dto.getId());
 			pstmt.setString(2, dto.getPassword());

@@ -47,7 +47,6 @@ public class Mainframe {
 
 	public Mainframe(DTO user) {
 		JFrame frame = new JFrame();
-
 		// frame property
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setSize(400, 770);
@@ -63,7 +62,7 @@ public class Mainframe {
 
 		// header inner property
 		headerLogo = new JLabel(logo);
-		headerUserName = new JLabel(user.getId() + "님");
+		headerUserName = new JLabel(user.getName() + "님");
 		headerSignOut = new JLabel("sign out");
 		headerSignOut.addMouseListener(new MouseAdapter() {
 			@Override

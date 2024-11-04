@@ -1,5 +1,8 @@
 package signinpage;
 
+import java.awt.Dimension;
+import java.util.List;
+
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
@@ -10,11 +13,12 @@ import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
 public class DetailPage {
-	JTextArea review = new JTextArea(5, 30);
-	
+	JTextArea review = new JTextArea("300자까지 입력 가능",5, 30);
+	JFrame frame = new JFrame();
+	JPanel otherReview = new JPanel();
+	JPanel userReview = new JPanel();
 	public DetailPage(MainDTO dto, DTO userDto) {
 		// frame property
-		JFrame frame = new JFrame();
 		frame.setSize(400, 770);
 		frame.setLayout(new BoxLayout(frame.getContentPane(), BoxLayout.Y_AXIS));
 		frame.setLocationRelativeTo(null);
@@ -34,7 +38,7 @@ public class DetailPage {
 		JPanel writeReview = new JPanel();
 		JButton submitButton = new JButton("submit");
 		// other review property
-		JPanel otherReview = new JPanel();
+		userReview.setLayout(new BoxLayout(userReview, BoxLayout.Y_AXIS));
 		
 		// frame add
 		frame.add(bookInform);
@@ -58,14 +62,36 @@ public class DetailPage {
 		writeReview.add(submitButton);
 		writeReview.add(review);
 		
+		// other review add
+		loadReview(dto);
 		// end
 		frame.setVisible(true);
 	}
+	
 	public void submit(MainDTO dto, DTO userDto) {
-		String bookName = dto.getId();
-		String userName = userDto.getName();
-		String submitReview = review.getText();
-		// 이렇게 받은 책 이름, 유저이름, 리뷰 텍스트를 데이터베이스에 올리고
+		ReviewDTO reviewDTO = new ReviewDTO(dto.getId(), userDto.getName(), review.getText());
+		new ReviewDAO().insertReview(reviewDTO);
+		review.setText("300자까지 입력 가능");
+		loadReview(dto);
 		// other review에서 받기만 하면 끝
 		}
+	
+	public void loadReview(MainDTO dto) {
+		userReview.removeAll();
+		List<ReviewDTO> dtoList = new ReviewDAO().loadReview(dto.getId());	
+		for(ReviewDTO reviewDTO : dtoList) {
+			JTextArea reviewText = new JTextArea(reviewDTO.getReview());
+			reviewText.setLineWrap(true);
+			reviewText.setEditable(false);
+			reviewText.setSize(new Dimension(350, 100));
+			reviewText.setMaximumSize(new Dimension(350, 300));
+			userReview.add(new JLabel(reviewDTO.getUserName()));
+			userReview.add(reviewText);
+			otherReview.add(userReview);
+		}
+		userReview.revalidate();
+		userReview.repaint();
+		
+		
+	}
 }

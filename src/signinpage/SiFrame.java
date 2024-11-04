@@ -160,15 +160,13 @@ public class SiFrame {
 	}
 	
 	public void signIn(String idInput, String passInput) {
-//		DTO user = new DAO().signInDAO(idInput, passInput);	
-//		if (user != null) {
-//			frame.dispose();
-//			new Mainframe(user);	
-//		} else {
-//			JOptionPane.showMessageDialog(null, "아이디, 비밀번호를 확인해 주세요");
-//		}
-		frame.dispose();
-		new Mainframe(new DTO());
+		DTO user = new DAO().signInDAO(idInput, passInput);	
+		if (user.name != null) {
+			frame.dispose();
+			new Mainframe(user);	
+		} else {
+			JOptionPane.showMessageDialog(null, "아이디, 비밀번호를 확인해 주세요");
+		}
 	}
 	
 	public static void main(String[] args) {

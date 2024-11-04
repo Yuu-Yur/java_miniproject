@@ -10,14 +10,8 @@ import java.util.List;
 public class MainDAO {
 	Connection con;
 	String sql;
-	String sql2;
-	String sql3;
 	PreparedStatement pstmt;
-	PreparedStatement pstmt2;
-	PreparedStatement pstmt3;
 	ResultSet rs = null;
-	ResultSet rs2 = null;
-	ResultSet rs3 = null;
 	MainDTO dto;
 	List<MainDTO> dtoList;
 

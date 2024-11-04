@@ -1,6 +1,7 @@
 package signinpage;
 
 import java.awt.Label;
+
 import javax.swing.*;
 
 public class SiFrame {
@@ -77,6 +78,7 @@ public class SiFrame {
 	footerPanel.setLayout(new BoxLayout(footerPanel, BoxLayout.Y_AXIS));
 	forgot.addActionListener(e -> findPass());
 	suButton.addActionListener(e -> signUp());
+	confirmButton.addActionListener(e -> signIn(idInput.getText(),passInput.getText()));
 	
 	// 끝
 	frame.setVisible(true);
@@ -155,6 +157,18 @@ public class SiFrame {
 		frame.add(confirmButton);
 		
 		frame.setVisible(true);
+	}
+	
+	public void signIn(String idInput, String passInput) {
+//		DTO user = new DAO().signInDAO(idInput, passInput);	
+//		if (user != null) {
+//			frame.dispose();
+//			new Mainframe(user);	
+//		} else {
+//			JOptionPane.showMessageDialog(null, "아이디, 비밀번호를 확인해 주세요");
+//		}
+		frame.dispose();
+		new Mainframe(new DTO());
 	}
 	
 	public static void main(String[] args) {

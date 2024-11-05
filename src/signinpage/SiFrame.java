@@ -174,3 +174,6 @@ public class SiFrame {
 	}
 }
 
+// 사진을 데이터베이스 -> 이미지 db 만들기
+// 이미지 db의 url을 maindb에 저장해서 읽어올 수 있음
+// 이미지는 이미지db에 올리고
